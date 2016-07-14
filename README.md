@@ -1,4 +1,4 @@
-#AWS SWF Example
+# AWS SWF Example
 
 This app demonstrates how to use AWS Simple Workflow with the standard SDK.  This is written in java, but since it uses the standard SDK it could easily be ported to C#. 
 
@@ -16,7 +16,7 @@ The workflow looks like this...
 
 --------
 
-##Code Layout
+## Code Layout
 
 I created a lightweight framework to handle some of the boilerplate of using the AWS SDK for SWF.  These classes are under the "framework" directory.
 
@@ -43,6 +43,31 @@ The workflow class **ThreeHeadsInARowWorkflow** is what handles the decisions an
      - if workflow has been started and we don't have an activity result and no errors, trigger the first activity.  
 
 
-##How to run it
+## How to run it
 
-TODO
+#### Prerequisite
+ - java 7 or 8 (should work, tested on 1.8.0_74)
+
+#### Setup
+ 1. Clone this repo to your local machine.
+ 
+    ``clone git@github.com:NationalResearchCorporation/aws-swf-example.git``
+
+
+ 2. Run gradle to build the project. From the root of the project run..
+ 
+    ``gradlew.bat clean build copyDeps``  *(windows)*
+    
+    ``./gradlew clean build copyDeps``  *(mac/linux)*
+    
+
+ 3. Copy the sample.system.properties and name it system.properties (keeping it in the project root directory). Edit the system.properties to use your aws access key and secret key
+ 
+ 4. Run the app
+ 
+    ``java -cp "build\libs\*" com.nationalresearch.aws.swf.example.RunThreeHeadsWorkflow`` *(windows ?)*
+    
+    ``java -cp "build/libs/*" com.nationalresearch.aws.swf.example.RunThreeHeadsWorkflow`` *(mac/linux)*
+
+
+
