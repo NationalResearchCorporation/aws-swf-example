@@ -77,8 +77,9 @@ The workflow class **ThreeHeadsInARowWorkflow** is what handles the decisions an
 
  5. The app will trigger one workflow execution, but the pollers will not stop on their own own, to exit use Ctrl-C
  
+
  
- #### Additional Info
+#### Additional Info
  
 The app registers everything under the **test-domain**, so if you login to AWS and look at the SWF console you should select this domain from the dropdown. You can see all the events and activities for any given workflow execution.  You can even trigger a new workflow execution or re-run a failed or completed execution. If you have the app running (pollers are on) then when you trigger another execution from the AWS console you will see that the pollers pick up this new workflow execution.
 
