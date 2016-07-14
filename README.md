@@ -85,16 +85,16 @@ The app registers everything under the **test-domain**, so if you login to AWS a
 
 The FlipCoin activity is setup to randomly throw an error, so occasionally you might see that the workflow execution failed and you'll see something like this...
 
-``
+```
 ActivityPoller: ERROR: Executing activity : flip-coin-activity - Oh no! thumb got tired and couldn't flip the coin anymore.
 ThreeHeadsInARowWorkflow: Activity failed.. Making call to SWF to fail this workflow
-``
+```
 
 
 If the workflow execution completes you should see something like this...
 
-``
+```
 ThreeHeadsInARowWorkflow: Workflow completed.. it took 5 flips and 10 activities to flip heads three times in a row... Sending complete workflow decision
 ThreeHeadsInARowWorkflow:  -> Flip History -> [TAILS, TAILS, HEADS, HEADS, HEADS]
-``
+```
  
