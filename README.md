@@ -24,12 +24,12 @@ The example workflow and activities are under the "workflow" directory.
 
 The initial "main" entry to kick off the entire example is from the **RunThreeHeadsWorkflow** class.  This class does the following...
 
- -  Registers the domain, workflow type and activity types with AWS. (This means not manual configuration in AWS is necessary)
+ -  Registers the domain, workflow type and activity types with AWS. (This means manual configuration in AWS is not necessary)
  -  Starts the ActivityPoller to poll AWS for new activity tasks
  -  Starts the WorkPollers to poll AWS for new decision tasks
  -  Starts the workflow
 
-The workflow class **ThreeHeadsInARowWorkflow** is what handles are the decisions and schedules all the activities.  This class is called from the WorkflowPoller ever time new decision tasks are available.  This class does the following..
+The workflow class **ThreeHeadsInARowWorkflow** is what handles the decisions and schedules all the activities.  This class is called from the WorkflowPoller ever time new decision tasks are available.  This class does the following..
 
  - Loops over history events in the decision tasks to populate a **WorkflowState** object
  - Using the WorkflowState object decides what needs to be done next.
@@ -40,7 +40,7 @@ The workflow class **ThreeHeadsInARowWorkflow** is what handles are the decision
            - if we have a heads... trigger HeadsActivity
            - if we have a tails... trigger TailsActivity
            - If we don't have heads or tails... trigger FlipCoinActivity
-     - if workflow has been started and we don't have am activity results and no errors, trigger the first activity.  
+     - if workflow has been started and we don't have an activity result and no errors, trigger the first activity.  
 
 
 ##How to run it
