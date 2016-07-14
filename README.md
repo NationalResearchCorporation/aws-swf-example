@@ -49,9 +49,11 @@ The workflow class **ThreeHeadsInARowWorkflow** is what handles the decisions an
  - java 7 or 8 (should work, tested on 1.8.0_74)
 
 #### Setup
- 1. Clone this repo to your local machine.
+ 1. Clone this repo to your local machine and change directory to it.
  
-    ``clone git@github.com:NationalResearchCorporation/aws-swf-example.git``
+    ``git clone git@github.com:NationalResearchCorporation/aws-swf-example.git``
+    
+    ``cd aws-swf-example``
 
 
  2. Run gradle to build the project. From the root of the project run..
@@ -63,11 +65,35 @@ The workflow class **ThreeHeadsInARowWorkflow** is what handles the decisions an
 
  3. Copy the sample.system.properties and name it system.properties (keeping it in the project root directory). Edit the system.properties to use your aws access key and secret key
  
- 4. Run the app
+     ``cp sample.system.properties system.properties``  *(mac/linux)*
+     
+ 
+ 4. Run the app  
  
     ``java -cp "build\libs\*" com.nationalresearch.aws.swf.example.RunThreeHeadsWorkflow`` *(windows ?)*
     
     ``java -cp "build/libs/*" com.nationalresearch.aws.swf.example.RunThreeHeadsWorkflow`` *(mac/linux)*
 
 
+ 5. The app will trigger one workflow execution, but the pollers will not stop on their own own, to exit use Ctrl-C
+ 
+ 
+ #### Additional Info
+ 
+The app registers everything under the **test-domain**, so if you login to AWS and look at the SWF console you should select this domain from the dropdown. You can see all the events and activities for any given workflow execution.  You can even trigger a new workflow execution or re-run a failed or completed execution. If you have the app running (pollers are on) then when you trigger another execution from the AWS console you will see that the pollers pick up this new workflow execution.
 
+The FlipCoin activity is setup to randomly throw an error, so occasionally you might see that the workflow execution failed and you'll see something like this...
+
+``
+ActivityPoller: ERROR: Executing activity : flip-coin-activity - Oh no! thumb got tired and couldn't flip the coin anymore.
+ThreeHeadsInARowWorkflow: Activity failed.. Making call to SWF to fail this workflow
+``
+
+
+If the workflow execution completes you should see something like this...
+
+``
+ThreeHeadsInARowWorkflow: Workflow completed.. it took 5 flips and 10 activities to flip heads three times in a row... Sending complete workflow decision
+ThreeHeadsInARowWorkflow:  -> Flip History -> [TAILS, TAILS, HEADS, HEADS, HEADS]
+``
+ 
