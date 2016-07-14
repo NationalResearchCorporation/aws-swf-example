@@ -26,8 +26,8 @@ The initial "main" entry to kick off the entire example is from the **RunThreeHe
 
  -  Registers the domain, workflow type and activity types with AWS. (This means manual configuration in AWS is not necessary)
  -  Starts the ActivityPoller to poll AWS for new activity tasks
- -  Starts the WorkPollers to poll AWS for new decision tasks
- -  Starts the workflow
+ -  Starts the WorkflowPollers to poll AWS for new decision tasks
+ -  Starts the workflow using the WorkflowStarter
 
 The workflow class **ThreeHeadsInARowWorkflow** is what handles the decisions and schedules all the activities.  This class is called from the WorkflowPoller ever time new decision tasks are available.  This class does the following..
 
@@ -79,7 +79,7 @@ The workflow class **ThreeHeadsInARowWorkflow** is what handles the decisions an
  
 
  
-#### Additional Info
+## Additional Info
  
 The app registers everything under the **test-domain**, so if you login to AWS and look at the SWF console you should select this domain from the dropdown. You can see all the events and activities for any given workflow execution.  You can even trigger a new workflow execution or re-run a failed or completed execution. If you have the app running (pollers are on) then when you trigger another execution from the AWS console you will see that the pollers pick up this new workflow execution.
 
